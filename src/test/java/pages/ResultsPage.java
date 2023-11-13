@@ -12,18 +12,24 @@ public class ResultsPage extends BasePage {
   @FindBy(id = "mw-panel-toc")
   private WebElement sidebar;
 
+  @FindBy(id = "ca-edit")
+  private WebElement editBtn;
+
   public ResultsPage(WebDriver driver) {
     super(driver);
   }
 
-  public boolean isTitleCorrect(String text) {
-    waitElementVisibility(resultTitle);
-    return resultTitle.isDisplayed() && resultTitle.getText().equalsIgnoreCase(text);
+  public boolean isResultsTitleCorrect(String text) {
+    return isTitleCorrect(text, resultTitle);
   }
 
   public boolean isSidebarDisplayed() {
-    waitElementVisibility(sidebar);
-    return sidebar.isDisplayed();
+    return isElementDisplayed(sidebar);
+  }
+
+  public EditPage editArticle() {
+    clickOn(editBtn);
+    return new EditPage(driver);
   }
   
 }

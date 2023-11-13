@@ -46,7 +46,7 @@ public class SWapiWikipediaSteps {
   @Then("the user should be able to see the article page with {string} as title")
   public void userAbleToSeeCorrectArticlePage(String expectedName) {
     Assert.assertEquals(expectedName, character.getName());
-    Assert.assertTrue(results.isTitleCorrect(expectedName));
+    Assert.assertTrue(results.isResultsTitleCorrect(expectedName));
     Assert.assertTrue(results.isSidebarDisplayed());
   }
 

@@ -37,4 +37,14 @@ public class BasePage {
     waitElementVisibility(element);
     element.sendKeys(text);
   }
+
+  public boolean isTitleCorrect(String text, WebElement title) {
+    waitElementVisibility(title);
+    return title.isDisplayed() && title.getText().equalsIgnoreCase(text);
+  }
+
+  public boolean isElementDisplayed(WebElement element) {
+    waitElementVisibility(element);
+    return element.isDisplayed();
+  }
 }
