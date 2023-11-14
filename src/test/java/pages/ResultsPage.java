@@ -15,6 +15,9 @@ public class ResultsPage extends BasePage {
   @FindBy(id = "ca-edit")
   private WebElement editBtn;
 
+  @FindBy(id = "ca-history")
+  private WebElement historyBtn;
+
   public ResultsPage(WebDriver driver) {
     super(driver);
   }
@@ -30,6 +33,11 @@ public class ResultsPage extends BasePage {
   public EditPage editArticle() {
     clickOn(editBtn);
     return new EditPage(driver);
+  }
+
+  public HistoryPage viewArticleHistory() {
+    clickOn(historyBtn);
+    return new HistoryPage(driver);
   }
   
 }
