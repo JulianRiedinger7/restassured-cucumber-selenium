@@ -20,3 +20,10 @@ Feature: SWapi API & Wikipedia UI Tests
     When the user searches the movie in Wikipedia
     And the user clicks on edit article
     Then the user should be able to see the edit page with the correct title
+
+
+  Scenario: Check history page displayed for random Star Wars movie
+    Given the user is in SW API requesting a random movie
+    When the user searches the movie in Wikipedia
+    And the user clicks on view history of the article
+    Then the user should be able to see the history page with the correct title

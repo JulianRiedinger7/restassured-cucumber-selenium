@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.beust.ah.A;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -15,6 +17,7 @@ import io.restassured.response.Response;
 import models.Character;
 import models.Film;
 import pages.EditPage;
+import pages.HistoryPage;
 import pages.HomePage;
 import pages.ResultsPage;
 import utils.UtilMethods;
@@ -27,6 +30,8 @@ public class SWapiWikipediaSteps {
   private HomePage home;
   private ResultsPage results;
   private EditPage edit;
+  private HistoryPage history;
+  private static final int TOTAL_MOVIES = 6;
 
   @Before
   public void setup() {
@@ -58,7 +63,7 @@ public class SWapiWikipediaSteps {
 
   @Given("the user is in SW API requesting a random movie")
   public void userRequestingRandomSWApiMovie() {
-    int random = (int) Math.round(Math.random() * (6 - 1) + 1);
+    int random = UtilMethods.generateRandom(TOTAL_MOVIES, 1);
 
     Response response = RestAssured.given().get("films/" + random);
 
@@ -75,10 +80,22 @@ public class SWapiWikipediaSteps {
     edit = results.editArticle();
   }
 
+  @And("the user clicks on view history of the article")
+  public void userClicksOnViewArticleHistory() {
+    history = results.viewArticleHistory();
+  }
+
   @Then("the user should be able to see the edit page with the correct title")
   public void userAbleToSeeCorrectEditPage() {
-    Assert.assertTrue(edit.isEditTitleCorrect("Editing " + UtilMethods.getAlternateTitle(film.getTitle())));
+    Assert.assertTrue(edit.isEditTitleCorrect("Editing"));
+    Assert.assertTrue(edit.isEditTitleCorrect(UtilMethods.getAlternateTitle(film.getTitle())));
     Assert.assertTrue(edit.isEditorDisplayed());
+  }
+
+  @Then("the user should be able to see the history page with the correct title")
+  public void userAbleToSeeCorrectHistoryPage() {
+    Assert.assertTrue(history.isHistoryTitleCorrect(film.getTitle() + ": Revision history"));
+    Assert.assertTrue(history.isFilterDisplayed());
   }
 
   @After
