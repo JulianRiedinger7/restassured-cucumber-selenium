@@ -10,4 +10,8 @@ public class UtilMethods {
 
     return originalName;
   }
+
+  public static int generateRandom(int max, int min) {
+    return (int) Math.round(Math.random() * (max - min) + min);
+  }
 }
