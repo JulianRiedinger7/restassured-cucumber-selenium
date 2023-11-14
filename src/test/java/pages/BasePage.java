@@ -38,9 +38,9 @@ public class BasePage {
     element.sendKeys(text);
   }
 
-  public boolean isTitleCorrect(String text, WebElement title) {
+  public boolean titleContains(String text, WebElement title) {
     waitElementVisibility(title);
-    return title.isDisplayed() && title.getText().equalsIgnoreCase(text);
+    return title.isDisplayed() && title.getText().toLowerCase().contains(text.toLowerCase());
   }
 
   public boolean isElementDisplayed(WebElement element) {

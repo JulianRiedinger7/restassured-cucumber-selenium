@@ -6,10 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-  @FindBy(id = "searchInput")
+  @FindBy(css = "#searchform input[name='search']")
   private WebElement searchInput;
 
-  @FindBy(css = "button[type=\"submit\"]")
+  @FindBy(css = "#searchform button")
   private WebElement searchBtn;
 
   public HomePage(WebDriver driver) {

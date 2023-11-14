@@ -20,7 +20,7 @@ public class ResultsPage extends BasePage {
   }
 
   public boolean isResultsTitleCorrect(String text) {
-    return isTitleCorrect(text, resultTitle);
+    return titleContains(text, resultTitle);
   }
 
   public boolean isSidebarDisplayed() {

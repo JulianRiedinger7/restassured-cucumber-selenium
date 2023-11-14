@@ -17,7 +17,7 @@ public class EditPage extends BasePage {
   }
 
   public boolean isEditTitleCorrect(String text) {
-    return isTitleCorrect(text, editTitle);
+    return titleContains(text, editTitle);
   }
 
   public boolean isEditorDisplayed() {
